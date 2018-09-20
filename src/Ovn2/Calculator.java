@@ -12,7 +12,7 @@ public class Calculator {
         double secondNum = userInput.nextInt();
 
         double sum = firstNum + secondNum;
-        double dif = firstNum - secondNum;
+        double dif = Math.abs(firstNum - secondNum);
         double prod = firstNum * secondNum;
         double quotient = firstNum /secondNum;
 
