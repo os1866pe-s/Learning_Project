@@ -8,32 +8,57 @@ public class H4_5 {
 
         SimpleWindow window = new SimpleWindow(900,900,"Two Turtles");
 
-        Turtle ture = new Turtle(window,200,200);
-        Turtle tellus = new Turtle(window,700,700);
+        Turtle ture = new Turtle(window,100,100);
+        Turtle tellus = new Turtle(window,800,800);
         ture.penDown();
         tellus.penDown();
 
 
-        int turePosX,turePosY,tellusPosX,tellusPosY,tureRandom, tellusRandom;
-        double tureAngle = 90.0,tellusAngle = 90.0;
+        int turePosX,turePosY,tellusPosX,tellusPosY,tureLength,tellusLength,tureAngle = 90,tellusAngle = 90,tureLastAngle = 0,tellusLastAngle = 0;
+        int moveQuantity=0;
+        double tureRandom, tellusRandom;
 
+        while ((Math.hypot(Math.abs(ture.getX()-tellus.getX()), Math.abs(ture.getY()-tellus.getY()))) > 50){
 
+            tureLastAngle += tureAngle;
+            tellusLastAngle += tellusAngle;
 
-        while ((Math.hypot(Math.abs(ture.getX()-tellus.getY()), Math.abs(ture.getY()-ture.getY()))) > 50){
+            tureRandom =  Math.random();
+            tureLength = (int) ((tureRandom*10)+1);
+            tureAngle = (int) ((tureRandom*360)-179);
+            turePosX = (int)(ture.getX() + (Math.cos(Math.toRadians(tureAngle+tureLastAngle))*tureLength));
+            turePosY = (int)(ture.getY() - (Math.sin(Math.toRadians(tureAngle+tureLastAngle))*tureLength));
+            while ((turePosX < 0 || turePosX > 900) || (turePosY < 0 || turePosY > 900)){
 
-
-            if ((turePosX < 0 || ture.getY() > 900) || (ture.getX() < 0 || ture.getX() > 900)){
+                tureRandom =  Math.random();
+                tureLength = (int) ((tureRandom*10)+1);
+                tureAngle = (int) ((tureRandom*360)-179);
+                turePosX = (int)(ture.getX() + (Math.cos(Math.toRadians(tureAngle+tureLastAngle))*tureLength));
+                turePosY = (int)(ture.getY() - (Math.sin(Math.toRadians(tureAngle+tureLastAngle))*tureLength));
 
             }
-            turePosX = ture.getX()
-            ture.right((int) (Math.floor(Math.random()*360 )-179));
-            ture.forward((int) (Math.floor(Math.random()*10)+1));
+            ture.left(tureAngle);
+            ture.forward(tureLength);
 
-            tellus.right((int) (Math.floor(Math.random()*360 )-179));
-            tellus.forward((int) (Math.floor(Math.random()*10)+1));
-
+            tellusRandom =  Math.random();
+            tellusLength = (int) ((tellusRandom*10)+1);
+            tellusAngle = (int) ((tellusRandom*360)-179);
+            tellusPosX = (int)(tellus.getX() + Math.cos(Math.toRadians(tellusAngle+tellusLastAngle))*tellusLength);
+            tellusPosY = (int)(tellus.getY() - Math.sin(Math.toRadians(tellusAngle+tellusLastAngle))*tellusLength);
+            while ((tellusPosX < 0 || tellusPosX > 900) || (tellusPosY < 0 || tellusPosY > 900)){
+                tellusRandom =  Math.random();
+                tellusLength = (int) ((tellusRandom*10)+1);
+                tellusAngle = (int) ((tellusRandom*360)-179);
+                tellusPosX = (int)(tellus.getX() + (Math.cos(Math.toRadians(tellusAngle+tellusLastAngle))*tellusLength));
+                tellusPosY = (int)(tellus.getY() - (Math.sin(Math.toRadians(tellusAngle+tellusLastAngle))*tellusLength));
+            }
+            tellus.left(tellusAngle);
+            tellus.forward(tellusLength);
+            moveQuantity++;
 
         }
+        System.out.println("They made it!" + "\nIt took " + moveQuantity + " movements to complete" );
+        System.out.println(ture.getX() + " " + ture.getY());
+        System.out.println(tellus.getX() + " " + tellus.getY());
     }
-
 }
