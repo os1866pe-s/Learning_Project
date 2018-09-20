@@ -29,7 +29,5 @@ public class H4_4 {
             quantity++;
             System.out.println("You made " + quantity + " squares.");
         }
-
-
     }
 }
