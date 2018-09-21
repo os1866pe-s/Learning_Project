@@ -16,8 +16,7 @@ public class P1_3 {
             T1.right(120);
             T1.forward(100);
         }
-        T1.turnNorth();
-        T1.right(-120);
+
         T1.jumpTo(100,150);
         for (int i= 0; i<3;i++){
             T1.right(120);
