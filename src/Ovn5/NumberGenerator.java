@@ -40,4 +40,11 @@ public class NumberGenerator {
         return secretNum > guess;
     }
 
+    /**Tar reda på om det hemliga talet är större än guess.*/
+    boolean isSmallerThan(int guess){
+        return secretNum < guess;
+    }
+
+
+
 }
