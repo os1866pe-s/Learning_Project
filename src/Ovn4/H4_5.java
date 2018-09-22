@@ -20,6 +20,8 @@ public class H4_5 {
         tellus.penDown();
 
 
+
+
         int turePosX,turePosY,tellusPosX,tellusPosY,tureLength,tellusLength,tureAngle = 90,tellusAngle = 90,tureLastAngle = 0,tellusLastAngle = 0;
         int moveQuantity=0;
         double tureRandom, tellusRandom;
