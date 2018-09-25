@@ -27,7 +27,7 @@ public class H4_5 {
         double tureRandom, tellusRandom;
 
         while ((Math.hypot(Math.abs(ture.getX()-tellus.getX()), Math.abs(ture.getY()-tellus.getY()))) > 50){
-            TimeUnit.MICROSECONDS.sleep(1);
+            //TimeUnit.MICROSECONDS.sleep(1);
             tureLastAngle += tureAngle;
             tellusLastAngle += tellusAngle;
 

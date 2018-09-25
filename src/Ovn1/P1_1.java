@@ -6,7 +6,7 @@ public class P1_1 {
 
     public static void main(String[] args){
 
-        SimpleWindow Window1 = new SimpleWindow(500,500, "Turtle Window");
+        SimpleWindow Window1 = new SimpleWindow(500,500, "Ovn8.Turtle Window");
         Turtle turtle = new Turtle(Window1,250,250);
 
         turtle.penDown();

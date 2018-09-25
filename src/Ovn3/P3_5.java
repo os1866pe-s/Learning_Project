@@ -1,6 +1,5 @@
 package Ovn3;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class P3_5 {
