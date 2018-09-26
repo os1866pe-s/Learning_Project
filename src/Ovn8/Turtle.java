@@ -2,12 +2,15 @@ package Ovn8;
 
 import se.lth.cs.window.SimpleWindow;
 
+import java.awt.*;
+
 public class Turtle {
 
     private SimpleWindow w;
     private double x,y;
     private int degrees;
     private boolean penD;
+    private int tempX, tempY;
 
 
 
@@ -55,24 +58,18 @@ public class Turtle {
     void jumpTo(int newX, int newY){
         x = newX;
         y = newY;
+        w.moveTo((int)x,(int)y);
     }
     /**Resets the turning to upwards.*/
     void turnNorth(){
         degrees = 90;
     }
     /**Resets the turning to downwards.*/
-    void turnSouth(){
-        degrees = 270;
+    void setRotation(int degrees){
+        this.degrees = degrees;
     }
     /**Resets the turning to left.*/
-    void turnWest(){
-        degrees = 180;
-    }
-    /**Resets the turning to right.*/
-    void turnEast(){
-        degrees = 0;
-    }
-    /**Returns the current x-coordinate.*/
+
     int getX(){
         return (int) x;
     }
@@ -89,17 +86,46 @@ public class Turtle {
         this.x = x;
         this.y = y;
         jumpTo(x-size,y-size);
-        for (int i = 0; i < 4; i++){
-            right(90);
-            forward(2*size);
-        }
+        w.lineTo(x+size,y-size);
+        w.lineTo(x+size,y+size);
+        w.lineTo(x-size, y+size);
+        w.lineTo(x-size,y-size);
     }
     /**Draws a circle with the midpoint x, y and the radius.*/
     void drawCircle(int x, int y, int radius){
-        jumpTo(x+radius, y);
-        for (int i = 0; i < 4*radius; i++){
-
+        w.moveTo(x+radius, y);
+        for (int i = 0; i < 360; i++){
+            tempX = (int) (Math.cos(Math.toRadians(i+1))*radius + x);
+            tempY = (int) (Math.sin(Math.toRadians(i+1))*radius + y);
+            w.lineTo(tempX,tempY);
         }
+        w.lineTo(x+radius,y);
     }
+    /**Draws a n sided polygon with a inner radius and the middpoint x, y.*/
+    void drawPolygon(int x, int y, int radius, int sides){
+        w.moveTo(x, y-radius);
+        int i = 1;
+        int sideAngle = 360/sides;
+        while (i < sides){
+            tempX = (int) (Math.cos(Math.toRadians(sideAngle*i-90))*radius + x);
+            tempY = (int) (Math.sin(Math.toRadians(sideAngle*i-90))*radius + y);
+            w.lineTo(tempX,tempY);
+            i++;
+        }
+        w.lineTo(x,y-radius);
+    }
+    /**Draws a square which is filled with a specific color.*/
+    void drawSquareFilled(int x, int y,int size, Color color){
+        drawSquare(x,y,size);
+        w.setLineColor(color);
+        w.moveTo(x-size+1,y);
+        w.setLineWidth(2*size-2);
+        w.lineTo(x+size,y);
 
+        w.setLineWidth(1);
+        w.moveTo(x+size+1,y+size-1);
+        w.lineTo(x-size-1,y+size-1);
+        w.setLineColor(Color.black);
+
+    }
 }
