@@ -5,7 +5,7 @@ import se.lth.cs.window.SimpleWindow;
 public class P1_2 {
     public static void main(String[] args){
 
-        SimpleWindow window1 = new SimpleWindow(500, 500, "Ovn8.Turtle Window");
+        SimpleWindow window1 = new SimpleWindow(500, 500, "Ovn7.Turtle Window");
 
         Turtle turtle1 = new Turtle(window1, 100,400);
         

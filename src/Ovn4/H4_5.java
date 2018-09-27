@@ -1,7 +1,7 @@
 package Ovn4;
 
-import se.lth.cs.p.ovn.turtle.Turtle;
 import se.lth.cs.window.SimpleWindow;
+import Ovn7.Turtle;
 
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +27,7 @@ public class H4_5 {
         double tureRandom, tellusRandom;
 
         while ((Math.hypot(Math.abs(ture.getX()-tellus.getX()), Math.abs(ture.getY()-tellus.getY()))) > 50){
-            //TimeUnit.MICROSECONDS.sleep(1);
+            TimeUnit.MICROSECONDS.sleep(1);
             tureLastAngle += tureAngle;
             tellusLastAngle += tellusAngle;
 
