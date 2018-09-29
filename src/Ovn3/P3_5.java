@@ -12,7 +12,7 @@ public class P3_5 {
         int num2 = userInput.nextInt();
         int sideAmount = 0;
 
-        while (num2 != 0){
+        while (num2 != 0 && num1 != 0){
             if (num1 == num2){
                 sideAmount++;
             }
