@@ -14,7 +14,7 @@ public class H8_2 {
 
         int vector[] = {2, -5, 14, 21, -7, 0, 0};
 
-
+        /*
         System.out.println(zeroIndex);
 
         for (int i = zeroIndex; i > (index); i--){
@@ -23,5 +23,6 @@ public class H8_2 {
         }
         vector[index] = numToInsert;
         System.out.println(Arrays.toString(vector));
+        */
     }
 }

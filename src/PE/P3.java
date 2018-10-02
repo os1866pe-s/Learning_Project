@@ -7,8 +7,8 @@ public class P3 {
 
         Scanner userInput = new Scanner(System.in);
 
-        //System.out.print("Enter a number: ");
-        System.out.println(isPrime(6857));
+        System.out.print("Enter a number: ");
+        System.out.println(isPrime(userInput.nextInt()));
         System.out.println(largestPrime(600851475143L));
 
 
