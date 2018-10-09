@@ -11,7 +11,7 @@ public class Turtle {
     private int degrees;
     private boolean penD;
     private int tempX, tempY;
-
+    private Color color;
 
 
     /**Creating a turtle which draws in window w*/
@@ -137,4 +137,16 @@ public class Turtle {
             w.setLineColor(Color.black);
         }
     }
+    /**Sets the color of the turtle*/
+    public void setColor(Color color){
+        this.color = color;
+        w.setLineColor(color);
+    }
+
+    /**Returns the color of the Turtle*/
+    public Color getColor(){
+        return color;
+    }
+
+
 }
