@@ -16,6 +16,7 @@ public class BankAccount {
     }
 
     /**Creates a bankaccount with the bankaccount accountNbr, holder and a balance.*/
+    //This is also a Constructor.
     public BankAccount(String holder,int AccountNbr, int balance){
         this.holder = holder;
         accNbr = AccountNbr;

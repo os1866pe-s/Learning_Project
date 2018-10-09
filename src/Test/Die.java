@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class Die {
 
-    private Random rand = new Random();
+    private Random rand;
     private int result;
 
     /**Creating a die.*/
     public Die(){
-
+        rand = new Random();
     }
     /**Throws the die.*/
     void roll(){

@@ -33,17 +33,15 @@ public class RaceTrack {
         w.moveTo(0, yStart);
         w.lineTo(wWidth,yStart);
 
-        w.moveTo(wWidth/2,0+(wHeight-yStart));
-        w.lineTo(wWidth/2,wHeight-(wHeight-yStart));
         drawStartFinish();
 
     }
 
     private void drawStartFinish(){
-        w.moveTo(wWidth/2-15, yStart+20);
+        w.moveTo(wWidth/2-15, yStart+30);
         w.writeText("Start");
 
-        w.moveTo(wWidth/2-15, yFinish-20);
+        w.moveTo(wWidth/2-15, yFinish-40);
         w.writeText("Finish");
     }
 
