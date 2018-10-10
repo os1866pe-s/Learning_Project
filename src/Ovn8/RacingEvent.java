@@ -139,7 +139,7 @@ public class RacingEvent{
             if (turtle[i] != null){
                 w.setLineColor(color[i]);
                 w.moveTo(((2*i+1)*wWidth/(2*turtles))-20, wHeight-yStart-15);
-                w.writeText("Blue" + tPos[i]);
+                w.writeText( "You " + tPos[i]);
             }
         }
 
