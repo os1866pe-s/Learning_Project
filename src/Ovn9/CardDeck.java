@@ -1,34 +1,44 @@
 package Ovn9;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class CardDeck {
 
     private Card cards[];
-    private Random rand;
-    private int cardQuantity;
+    int cardQuantity;
 
-    /**Creates a Deck of cards*/
-    public CardDeck(){
-        cards = new Card[52];
+    /**
+     * Creates a Deck of cards
+     */
+    public CardDeck() {
+        cards = new Card[4*13];
         cardQuantity = 52;
 
-        for (int i = 1; i <= 4; i++){
-            for (int j = 1; j <= 13; j++){
+        int m = 1,t = 1;
+        for (int i = 1; i <= 56; i++){
 
-                cards[i*j-1] = new Card(i-1,j-1);
+            if (t == 14){
+                m++;
+                t = 1;
+
+            }else {
+                cards[i-m] = new Card(m,t);
+                t++;
             }
         }
-
     }
-    /**Mixes the Cards in the deck.*/
-    public void shuffle(){
-        rand = new Random();
+
+    /**
+     * Mixes the Cards in the deck.
+     */
+    public void shuffle() {
+        Random rand = new Random();
         Card cardTemp;
         int firstSwitch;
         int secondSwitch;
 
-        for (int i = 0; i < 200; i++){
+        for (int i = 0; i < 500; i++) {
             firstSwitch = rand.nextInt(cardQuantity);
             secondSwitch = rand.nextInt(cardQuantity);
 
@@ -38,14 +48,24 @@ public class CardDeck {
         }
     }
 
-    /**Returns true if there is more cards in the deck.*/
-    public boolean moreCards(){
-        return cardQuantity != 0;
+    /**
+     * Returns true if there is more cards in the deck.
+     */
+    public boolean moreCards() {
+        return cardQuantity > 0;
     }
 
     /**Retrieves the upper most card to the user and removes it from the deck.*/
-    public Card getCard(){
-        //Not Done, Do more work
-        return cards[cardQuantity-1];
+    public String getCard() {
+        Card nextCard;
+        cardQuantity--;
+
+        if (cardQuantity < 0) {
+            return "Nothing here.";
+
+        }else {
+            String temp = cards[cardQuantity].cardToString();
+            return temp;
+        }
     }
 }
