@@ -3,21 +3,25 @@ package Ovn10;
 public class LifeController {
     public static void main(String[] args){
 
-        LifeBoard board = new LifeBoard(5, 5);
+        LifeBoard board = new LifeBoard(15, 15);
         LifeView window = new LifeView(board);
 
+        Life life = new Life(board);
+
+
+
+        //window.update();
 
 
         while (true) {
 
-
-
+            window.update();
             if (window.getCommand() == 2){
-                board.increaseGeneration();
-                window.update();
-            }
+                life.newGeneration();
+            }else if (window.getCommand() == 1){
 
-            if (window.getCommand() == 3) {
+                life.flip(window.getRow(),window.getCol());
+            }else if (window.getCommand() == 3) {
                 System.exit(0);
             }
         }
