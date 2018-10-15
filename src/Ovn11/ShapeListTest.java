@@ -3,16 +3,12 @@ package Ovn11;
 import se.lth.cs.window.SimpleWindow;
 
 public class ShapeListTest {
+
     public static void main(String[] args) {
         SimpleWindow w = new SimpleWindow(600, 600, "ShapeListTest");
-        ShapeList shapes = new ShapeList();
 
-        LoadFiles load = new LoadFiles("loadtest.txt");
-        shapes.insert(new Square(100, 300, 100));
-        shapes.insert(new Triangle(400, 200, 100));
-        shapes.insert(new Circle(400, 400, 50));
-        shapes.insert(new Square(450, 450, 50));
-        shapes.insert(new Square(200, 200, 35));
+        LoadFiles load = new LoadFiles("src\\Ovn11\\loadtest.txt");
+        ShapeList shapes = load.loadShapes();
         shapes.draw(w);
 
         while (true){
