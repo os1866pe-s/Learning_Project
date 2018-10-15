@@ -6,6 +6,8 @@ public class ShapeListTest {
     public static void main(String[] args) {
         SimpleWindow w = new SimpleWindow(600, 600, "ShapeListTest");
         ShapeList shapes = new ShapeList();
+
+        LoadFiles load = new LoadFiles("loadtest.txt");
         shapes.insert(new Square(100, 300, 100));
         shapes.insert(new Triangle(400, 200, 100));
         shapes.insert(new Circle(400, 400, 50));
