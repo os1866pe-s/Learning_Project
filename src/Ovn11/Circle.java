@@ -22,4 +22,19 @@ public class Circle extends Shape {
         }
         w.lineTo(x + radius, y);
     }
+
+    /**Returns the data of the shape in a readable format.*/
+    public String getData() {
+        String tempData = "C " + x + " " + y + " " + radius;
+
+        return tempData;
+    }
+
+    public boolean inside(int px, int py){
+        if (Math.hypot(Math.abs(x-px), Math.abs(y-py)) <=radius){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

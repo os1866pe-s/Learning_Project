@@ -27,9 +27,10 @@ public abstract class Shape {
     }
 
     /** Undersöker om punkten xc,yc ligger "nära" figuren */
-    public boolean near(int xc, int yc) {
-        return Math.abs(x - xc) < 10 && Math.abs(y - yc) < 10;
-    }
+    public abstract boolean inside(int px, int py);
+
+    public abstract String getData();
 }
+
 
 

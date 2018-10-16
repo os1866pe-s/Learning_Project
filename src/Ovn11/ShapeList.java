@@ -35,11 +35,23 @@ public class ShapeList {
         Shape tempShape = null;
 
         for (int i = 0; i < shapeList.size(); i++) {
-            if (shapeList.get(i).near(x, y)){
+            if (shapeList.get(i).inside(x, y)){
                 tempShape = shapeList.get(i);
                 break;
             }
         }
         return tempShape;
+    }
+
+    /**Returns the data of the shape at a chosen index.*/
+    public String getShapeData(int index){
+        String tempData = shapeList.get(index).getData();
+
+        return tempData;
+    }
+
+    /**Returns the length of the shapelist.*/
+    public int getLength(){
+        return shapeList.size();
     }
 }
