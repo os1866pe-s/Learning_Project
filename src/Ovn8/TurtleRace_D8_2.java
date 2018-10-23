@@ -17,8 +17,8 @@ public class TurtleRace_D8_2 {
         Turtle t4 = new Turtle(w, 0,0 );
         Turtle t5 = new Turtle(w, 0,0 );
 
-        RacingEvent racingEvent = new RacingEvent(raceTrack,ture,tellus,trulls,t4,t5);
-        racingEvent.startRace(5);
+        RacingEvent racingEvent = new RacingEvent(raceTrack,ture,tellus,trulls,t4);
+        racingEvent.startRace(4);
 
     }
 }

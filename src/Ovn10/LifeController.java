@@ -9,10 +9,6 @@ public class LifeController {
         Life life = new Life(board);
 
 
-
-        //window.update();
-
-
         while (true) {
 
             window.update();

@@ -1,6 +1,5 @@
 package Ovn9;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class CardDeck {
@@ -38,14 +37,17 @@ public class CardDeck {
         int firstSwitch;
         int secondSwitch;
 
-        for (int i = 0; i < 500; i++) {
-            firstSwitch = rand.nextInt(cardQuantity);
-            secondSwitch = rand.nextInt(cardQuantity);
+        if (cardQuantity > 0){
+            for (int i = 0; i < 500; i++) {
+                firstSwitch = rand.nextInt(cardQuantity);
+                secondSwitch = rand.nextInt(cardQuantity);
 
-            cardTemp = cards[secondSwitch];
-            cards[secondSwitch] = cards[firstSwitch];
-            cards[firstSwitch] = cardTemp;
+                cardTemp = cards[secondSwitch];
+                cards[secondSwitch] = cards[firstSwitch];
+                cards[firstSwitch] = cardTemp;
+            }
         }
+
     }
 
     /**
@@ -56,16 +58,14 @@ public class CardDeck {
     }
 
     /**Retrieves the upper most card to the user and removes it from the deck.*/
-    public String getCard() {
-        Card nextCard;
+    public Card getCard() {
         cardQuantity--;
 
         if (cardQuantity < 0) {
-            return "Nothing here.";
+            return null;
 
         }else {
-            String temp = cards[cardQuantity].cardToString();
-            return temp;
+            return cards[cardQuantity];
         }
     }
 }

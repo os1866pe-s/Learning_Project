@@ -3,17 +3,15 @@ package Ovn9;
 public class H9_2 {
     public static void main(String[] args){
 
+
         double succees = 0;
         int tries = 1000;
 
         for (int t = 0; t < tries; t++) {
 
-            String tempCard;
-
+            Card tempCard;
             CardDeck cardDeck = new CardDeck();
-
             cardDeck.shuffle();
-
             boolean succeeded = true;
 
             int i = 0;
@@ -23,7 +21,7 @@ public class H9_2 {
                 i = (i == 3) ? 0 : i;
                 i++;
 
-                if (tempCard.contains(" " + Integer.toString(i) + " ")) {
+                if (tempCard.cardToString().contains(" " + Integer.toString(i) + " ")) {
                     succeeded = false;
                 }
 
@@ -40,5 +38,6 @@ public class H9_2 {
         System.out.println(succees/tries);
         //0.008157 ~ 0.8%
         //0.008064
+
     }
 }

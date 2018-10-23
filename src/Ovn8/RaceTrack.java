@@ -1,11 +1,6 @@
 package Ovn8;
 
-import Ovn7.Turtle;
 import se.lth.cs.window.SimpleWindow;
-
-import java.awt.*;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class RaceTrack {
 
@@ -56,6 +51,4 @@ public class RaceTrack {
     public SimpleWindow getWindow(){
         return w;
     }
-
-
 }

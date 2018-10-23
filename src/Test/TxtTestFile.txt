@@ -1,0 +1,6 @@
+This is a random file
+with some lines of
+text and some other
+information which you
+can find out in java
+with some simple code.
