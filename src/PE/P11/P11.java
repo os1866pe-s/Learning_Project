@@ -1,11 +1,9 @@
-package PE;
+package PE.P11;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class P11 {
     public static void main(String[] args){
@@ -13,7 +11,6 @@ public class P11 {
         File file = new File("src\\PE\\P11_Data.txt");
 
         StringBuilder sb = new StringBuilder();
-
         try {
 
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -27,7 +24,6 @@ public class P11 {
             System.out.println("Error accessing file.");
         }
         String stringFile = sb.toString();
-
         String[] nums = stringFile.split("\\s+");
 
         int[][] numbers = new int[20][20];
@@ -39,10 +35,6 @@ public class P11 {
             }
         }
 
-
-
-
-
         for (int i = 0; i < 20; i++){
             for (int j = 0; j < 20; j++){
                 System.out.print(numbers[j][i] + " ");
@@ -50,39 +42,23 @@ public class P11 {
             System.out.println();
         }
 
-        int horzProd = horizontal(numbers);
-        int vertProd = vertical(numbers);
-        int rightDiagProd = rightDiagonal(numbers);
-        int leftDiagProd = leftDiagonal(numbers);
+        int biggest = Math.max(Math.max(horizontal(numbers), vertical(numbers)), Math.max(rightDiagonal(numbers),leftDiagonal(numbers)));
 
-        int big = Math.max(horzProd, vertProd);
-        int big2 = Math.max(rightDiagProd,leftDiagProd);
-        int big3 = Math.max(big,big2);
-
-        System.out.println(horzProd + " " + vertProd + " " + "\nBiggest: " + big3);
+        System.out.println( "Biggest product: " + biggest);
     }
 
-    public static int horizontal(int[][] i){
 
-        int bigProd = 0;
+    //I could of created a line followed by sinx and cosx through 135 - 0 degress.
 
-        for (int r = 0; r < 17; r++){
-            for (int c = 0; c < 20; c++){
-                int nextProd = (i[r][c] * i[r+1][c] * i[r+2][c] * i[r+3][c]);
-                if ( nextProd > bigProd){
-                    bigProd = nextProd;
-                }
-            }
-        }
-        return bigProd;
-    }
 
-    public static int vertical(int[][] i){
+    //Calculates the biggest product horizontally in a grid of numbers.
+    private static int horizontal(int[][] i){
+
         int bigProd = 0;
 
         for (int r = 0; r < 20; r++){
-            for (int c = 0; c < 17; c++){
-                int nextProd = (i[r][c] * i[r][c+1] * i[r][c+2] * i[r][c+3]);
+            for (int c = 0; c < 20; c++){
+                int nextProd = (i[r][c] * i[(r+1) % 20][c] * i[(r+2) % 20][c] * i[(r+3) % 20][c]);
                 if ( nextProd > bigProd){
                     bigProd = nextProd;
                 }
@@ -91,12 +67,13 @@ public class P11 {
         return bigProd;
     }
 
-    public static int rightDiagonal(int[][] i ){
+    //Calculates the biggest product vertically in a grid of numbers.
+    private static int vertical(int[][] i){
         int bigProd = 0;
 
-        for (int r = 0; r < 13; r++){
-            for (int c = 0; c < 13; c++){
-                int nextProd = (i[r][c] * i[r+1][c+1] * i[r+2][c+2] * i[r+3][c+3]);
+        for (int r = 0; r < 20; r++){
+            for (int c = 0; c < 20; c++){
+                int nextProd = (i[r][(c) % 20] * i[r][(c+1) % 20] * i[r][(c+2) % 20] * i[r][(c+3) % 20]);
                 if ( nextProd > bigProd){
                     bigProd = nextProd;
                 }
@@ -105,12 +82,28 @@ public class P11 {
         return bigProd;
     }
 
-    public static int leftDiagonal(int[][] i ){
+    //Calculates the biggest product downwards-right-diagonal in a grid of numbers
+    private static int rightDiagonal(int[][] i ){
         int bigProd = 0;
 
-        for (int r = 3; r < 13; r++){
-            for (int c = 3; c < 13; c++){
-                int nextProd = (i[r-3][c-3] * i[r-2][c-2] * i[r-1][c-1] * i[r][c]);
+        for (int r = 0; r < 20; r++){
+            for (int c = 0; c < 20; c++){
+                int nextProd = (i[r][c] * i[(r+1) % 20][(c+1) % 20] * i[(r+2) % 20][(c+2) % 20] * i[(r+3) % 20][(c+3) % 20]);
+                if ( nextProd > bigProd){
+                    bigProd = nextProd;
+                }
+            }
+        }
+        return bigProd;
+    }
+
+    //Calculates the biggest product downwards-left-diagonal in a grid of numbers
+    private static int leftDiagonal(int[][] i ){
+        int bigProd = 0;
+
+        for (int r = 0; r < 20; r++){
+            for (int c = 0; c < 20; c++){
+                int nextProd = (i[(r+3 + 20) % 20][(c-3 + 20) % 20] * i[(r + 2 + 20) % 20][(c-2 + 20) % 20] * i[(r+1 + 20) % 20][(c-1 + 20) % 20] * i[r][c]);
                 if ( nextProd > bigProd){
                     bigProd = nextProd;
                 }
