@@ -1,6 +1,6 @@
 package PE.P67;
 
-import PE.P18.TrianglePath;
+import PE.P11_TO_20.P18.TrianglePath;
 
 
 public class P67 {

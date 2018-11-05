@@ -1,8 +1,7 @@
-package PE.P18;
+package PE.P11_TO_20.P18;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.awt.*;
 import java.io.FileReader;
 import java.io.IOException;
 

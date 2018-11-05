@@ -1,5 +1,5 @@
 
-package PE;
+package PE.P1_TO_10;
 import java.util.Scanner;
 
 public class P3 {

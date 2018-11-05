@@ -1,4 +1,4 @@
-package PE;
+package PE.P1_TO_10;
 
 public class P7 {
     public static void main(String[] args) {

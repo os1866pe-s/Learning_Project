@@ -1,7 +1,6 @@
-package PE.P8;
+package PE.P1_TO_10.P8;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class P8 {
     public static void main(String[] args){
