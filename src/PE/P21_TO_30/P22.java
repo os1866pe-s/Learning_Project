@@ -1,11 +1,10 @@
 package PE.P21_TO_30;
 
-import java.io.*;
-import java.lang.reflect.Array;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class P22 {
 
@@ -18,13 +17,7 @@ public class P22 {
 
     public static void main(String[] args) {
         load("src\\PE\\P21_TO_30\\p022_names.txt");
-        //sort();
-
-        //System.out.println(nameValue(0));//5162st names
-
-
-
-
+        sort(tokens);
 
         int i = 0;
         long sum = 0;
@@ -32,6 +25,7 @@ public class P22 {
 
             sum += nameValue(i) * (i + 1);
 
+            System.out.println(tokens[i] + " " + nameValue(i) + " " + (i +1) + " " + (nameValue(i) * (i + 1)));
             i++;
         }
         System.out.println(sum);
@@ -56,17 +50,7 @@ public class P22 {
 
     private static void sort(String[] stringArray) {
 
-        int switches = 0;
-        int i = 0;
-        while (switches > 0) {
-            while (isMoreNames(i)) {
-                if (stringArray[i].charAt(0) > stringArray[i + 1].charAt(0)) {
-                    switches++;
-
-                }
-            }
-            switches = 0;
-        }
+        Arrays.sort(stringArray);
 
     }
 
