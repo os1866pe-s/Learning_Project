@@ -16,31 +16,35 @@ public class P22 {
     }
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
+
         load("src\\PE\\P21_TO_30\\p022_names.txt");
-        sort(tokens);
+        Arrays.sort(tokens);
 
         int i = 0;
         long sum = 0;
         while (isMoreNames(i)){
 
-            sum += nameValue(i) * (i + 1);
+            sum += nameValue(i) * (i+1);
 
-            System.out.println(tokens[i] + " " + nameValue(i) + " " + (i +1) + " " + (nameValue(i) * (i + 1)));
+            //System.out.println(tokens[i] + " " + nameValue(i) + " " + (i +1) + " " + (nameValue(i) * (i + 1)));
             i++;
         }
-        System.out.println(sum);
+        long endTime = System.nanoTime();
+
+        double duration = (endTime - startTime);  //divide by 1000000 to get milliseconds.
+        System.out.println(sum + "\nTime: " + duration/1000000 + "ms");
 
     }
-
 
     private static long nameValue(int x) {
 
         int sum = 0;
         char[] word = tokens[x].toCharArray();
-        for (int i = 0; i < tokens[x].length(); i++){
+        for (int i = 0; i < word.length; i++){
+
             sum += word[i] - 'A' + 1;
         }
-
         return sum;
     }
 
@@ -48,15 +52,9 @@ public class P22 {
         return x < tokens.length;
     }
 
-    private static void sort(String[] stringArray) {
-
-        Arrays.sort(stringArray);
-
-    }
-
     private static void load(String file) {
         names = new StringBuilder();
-        String line = "";
+        String line;
 
         try {
             BufferedReader bf = new BufferedReader(new FileReader(new File(file)));
@@ -70,7 +68,9 @@ public class P22 {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        tokens = names.toString().split("\",\"");
+
+        //Removes all the " characters and for some reason the Ctrl characters to then split the string at , characters.
+        tokens = names.toString().replaceAll("\"", "").replaceAll("\\p{Cc}", "").split(",");
     }
 
 }
