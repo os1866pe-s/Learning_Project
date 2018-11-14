@@ -2,8 +2,6 @@ package Inl1;
 
 import se.lth.cs.p.inl1.*;
 import se.lth.cs.p.inl1.nbr11.*;
-
-
 public class Main {
 
     private static TextWindow textWindow1, textWindow2, textWindow3;
@@ -14,7 +12,6 @@ public class Main {
     public static void main(String[] args){
 
         TestCase testCase = new TestCase();
-
         key = new Key();
         crypto = new Cryptographer(key);
 
@@ -38,13 +35,10 @@ public class Main {
             textView3.displayText(testCase.getCryptoText(i));
 
             textWindow3.waitForMouseClick();
-
-
             if (i == 5){
                 break;
             }
             i++;
-
         }
     }
 }

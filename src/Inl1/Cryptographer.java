@@ -25,7 +25,6 @@ public class Cryptographer {
     public String encrypt(String text){
         ciphertext = new StringBuilder();
         int k = 0;
-
         for (int i = 0; i < text.length(); i++){
 
             if (text.charAt(i) == ' '){
@@ -34,7 +33,6 @@ public class Cryptographer {
                 ciphertext.append(key.getLetter(text.charAt(i) - 'A', keyarray[k % 5]));
                 k++;
             }
-
         }
         return ciphertext.toString();
     }
