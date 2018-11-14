@@ -2,13 +2,13 @@ package Inl2;
 import javax.swing.*;
 public class Dialog {
 
-	/** Skapar ett Dialog-objekt f�r hantering av popup-dialogrutor. */
+	/** Skapar ett Dialog-objekt för hantering av popup-dialogrutor. */
 	public Dialog() {
 	}
 
-	/** Visar en dialogruta med hj�lptexten s d�r anv�ndaren skall mata in ett 
+	/** Visar en dialogruta med hjälptexten s där användaren skall mata in ett
 	  * heltal som returneras.
-	  * Om anv�ndaren anger ett felaktigt v�rde eller klickar p� "avbryt" s� 
+	  * Om användaren anger ett felaktigt värde eller klickar på "avbryt" så
 	  * returneras Integer.MAX_VALUE.
 	  */
 	public int readInt(String s) {
@@ -21,9 +21,9 @@ public class Dialog {
 		}
 	}
 
-	/** Visar en dialogruta med hj�lptexten s d�r anv�ndaren skall mata in en 
-	  * teckenstr�ng som returneras.
-	  * Om anv�ndaren klickar p� "avbryt" s� returneras null.
+	/** Visar en dialogruta med hjälptexten s där användaren skall mata in en
+	  * teckensträng som returneras.
+	  * Om användaren klickar på "avbryt" så returneras null.
 	  */
 	public String readString(String s) {
 		String in = JOptionPane.showInputDialog(s);
@@ -34,7 +34,7 @@ public class Dialog {
 		}
 	}
 
-	/** Visar en dialogruta med textstr�ngen s. */
+	/** Visar en dialogruta med textsträngen s. */
 	public void printString(String s) {
 	   JOptionPane.showMessageDialog(null, s, "",JOptionPane.PLAIN_MESSAGE);
 	}
