@@ -11,27 +11,53 @@ public class Main {
                 "\n4: Sök skivor från artistnamn/del av artistnamn" +
                 "\n5: Sök skivor från titeln/del av titeln" +
                 "\n6: Se alla skivor sorterade efter artist" +
-                "\n7: Se alla skivor sorterade efter titel";
+                "\n7: Se alla skivor sorterade efter titel" +
+                "\n8: Exit";
 
-        String artist;
 
+        Register reg = new Register();
+        reg.readFromFile("src\\Inl2\\Information.txt");
 
-        while (true){
+        boolean loop = true;
+        while (loop){
             int choosenMenu = dialog.readInt(menu);
 
             switch (choosenMenu){
                 case 1:
+                    reg.addCD(dialog.readString("Artist"), dialog.readString("Title"));
+                    break;
+                case 2:
+                    reg.removeAllFromArtist(
+                            dialog.readString("Artist"));
+                    break;
+                case 3:
+                    reg.removeAllWithTitle(
+                            dialog.readString("Title"));
+                    break;
+                case 4:
+                    dialog.printString(
+                            reg.searchByArtist(
+                                    dialog.readString("Artist")));
+                    break;
+                case 5:
+                    dialog.printString(
+                            reg.searchByTitle(
+                                    dialog.readString("Title")));
+                    break;
+                case 6:
+                    dialog.printString(
+                            reg.getSortedByArtist());
+                    break;
+                case 7:
+                    dialog.printString(
+                            reg.getSortedByTitle());
+                    break;
+                case 8:
+                    loop = false;
 
-
-                case 2: ;
-
-                case 3: ;
-
-                default: ;
             }
-
         }
 
-
+        reg.writeToFile("src\\Inl2\\Information.txt");
     }
 }

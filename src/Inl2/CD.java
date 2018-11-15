@@ -23,7 +23,7 @@ public class CD {
 
     /**Returns a String which contains both the cd's artist and title.*/
     public String toString() {
-        return artist + "\t" + title;
+        return artist + "   " + title;
 
     }
 }
