@@ -1,6 +1,8 @@
 package Inl3;
 
 
+import java.awt.*;
+
 public class Mandelbrot {
 
     public static void main(String[] args) {
@@ -8,6 +10,8 @@ public class Mandelbrot {
         MandelbrotGUI mb = new MandelbrotGUI();
         mb.enableInput();
         Generator gen = new Generator();
+
+
 
         while (true) {
             int test =  mb.getCommand();
@@ -22,11 +26,10 @@ public class Mandelbrot {
                 case MandelbrotGUI.RENDER:
                     gen.render(mb);
                     break;
+                case MandelbrotGUI.RESOLUTION_VERY_LOW:
+                    gen.render(mb);
             }
 
-
         }
-
-
     }
 }

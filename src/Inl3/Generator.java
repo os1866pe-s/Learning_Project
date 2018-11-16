@@ -4,6 +4,8 @@ import java.awt.*;
 
 public class Generator {
 
+    private int pixelSize;
+
     public Generator(){
 
     }
@@ -12,32 +14,71 @@ public class Generator {
     public void render(MandelbrotGUI gui){
         gui.disableInput();
 
-        Complex[][] complex = mesh(gui.getMinimumReal(), gui.getMaximumReal(),
+        switch (gui.getResolution()){
+            case MandelbrotGUI.RESOLUTION_VERY_LOW:
+                pixelSize = 1;
+                break;
+            case MandelbrotGUI.RESOLUTION_LOW:
+                pixelSize = 2;
+                break;
+            case MandelbrotGUI.RESOLUTION_MEDIUM:
+                pixelSize = 3;
+                break;
+            case MandelbrotGUI.RESOLUTION_HIGH:
+                pixelSize = 4;
+                break;
+            case MandelbrotGUI.RESOLUTION_VERY_HIGH:
+                pixelSize = 5;
+                break;
+        }
+
+        int height = gui.getHeight();
+        int width = gui.getWidth();
+
+        Complex[][] mesh = mesh(gui.getMinimumReal(), gui.getMaximumReal(),
                                     gui.getMinimumImag(), gui.getMaximumImag(),
                                     gui.getWidth(), gui.getHeight());
-        Color[][] picture = new Color[gui.getWidth()][gui.getHeight()];
 
-        for (int i = 0; i < picture.length; i++){
-            for (int k = 0; k < picture.length; k++){
-                if (complex[i][k].getAbs2() > 1){
-                    picture[i][k] = Color.WHITE;
-                }else if (complex[i][k].getIm() < 0){
-                    if (complex[i][k].getRe() > 0){
-                        picture[i][k] = Color.RED;
-                    }else{
-                        picture[i][k] = Color.GREEN;
-                    }
-                }else {
-                    if (complex[i][k].getRe() > 0){
-                        picture[i][k] = Color.BLUE;
-                    }else {
-                        picture[i][k] = Color.ORANGE;
-                    }
+        Color[][] picture = new Color[(int) (height / pixelSize)][(int) (width / pixelSize)];
+
+
+        for (int i = 1; i <= picture.length; i++){
+            for (int k = 1; k <= picture[i].length; k++){
+
+                Complex cplx = mesh[(pixelSize/2 + i*pixelSize)][(pixelSize/2 + i*pixelSize)];
+
+                switch (gui.getMode()){
+                    case MandelbrotGUI.MODE_BW:
+                        if (cplx.getRe() > 0){
+                            picture[i][k] = Color.BLACK;
+
+                        }else {
+                            picture[i][k] = Color.WHITE;
+
+                        }
+
+                    case MandelbrotGUI.MODE_COLOR:
+                        if (cplx.getRe() > 0){
+                            if (cplx.getIm() > 0){
+                                picture[i][k] = Color.BLUE;
+
+                            }else {
+                                picture[i][k] = Color.RED;
+                            }
+                        }else {
+                            if (cplx.getIm() > 0){
+                                picture[i][k] = Color.GREEN;
+                            }else {
+                                picture[i][k] = Color.YELLOW;
+                            }
+                        }
+
                 }
+
 
             }
         }
-        gui.putData(picture, gui.getWidth(), gui.getHeight());
+        gui.putData(picture, pixelSize, pixelSize);
         gui.enableInput();
     }
 
@@ -46,11 +87,14 @@ public class Generator {
     private Complex[][] mesh(double minRe, double maxRe,
                              double minIm, double maxIm,
                              int width, int height){
-        Complex[][] plane = new Complex[(int) (maxRe-minRe)][(int) (maxIm - minIm)];
 
-        for (int r = 0; r < (int) (maxRe-minRe); r++){
-            for (int c = 0; c < (int) (maxIm - minIm); c++){
-                plane[r][c] = new Complex(2,2);
+        Complex[][] plane = new Complex[height][width];
+        double yStep = (maxIm - minIm) / (height-1);
+        double xStep = (maxRe - minRe) / (width-1);
+
+        for (int r = 0; r < height; r++){
+            for (int c = 0; c < width; c++){
+                plane[r][c] = new Complex(minRe + c * xStep,maxIm - r * yStep);
             }
         }
 
