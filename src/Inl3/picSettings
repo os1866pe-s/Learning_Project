@@ -1,0 +1,35 @@
+pic1
+Real axis:
+min -0.5427361445735144
+max -0.5427361445462456
+
+Imaginary axis:
+min 0.615536752661331
+max 0.615536752685453
+
+Iterations: 5000
+Resolution: Very High
+
+pic2
+Real axis:
+min -1.9447515428571427
+max -1.9369649632653060
+
+Imaginary axis:
+min -0.004137904894966574
+max 0.0025975691015438975
+
+Iterations: 2000
+Resolution: Very High
+
+pic3
+Real axis:
+min
+max
+
+Imaginary axis:
+min
+max
+
+Iterations:
+Resolution:

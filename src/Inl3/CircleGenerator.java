@@ -1,25 +1,17 @@
 package Inl3;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
 
-public class Generator {
+public class CircleGenerator {
 
     private int pixelSize;
 
-    private ArrayList<Color> colors;
+    public CircleGenerator(){
 
-    public Generator(){
-        colors = new ArrayList<Color>();
-        Random r = new Random();
-        for(int i =0; i<20000; i++){
-            colors.add(new Color((int)(r.nextDouble()*((double)Integer.MAX_VALUE - (double)Integer.MIN_VALUE) + Integer.MIN_VALUE)));
-        }
     }
 
     /**Draws an image in the user-interface gui*/
-    public void render(MandelbrotGUI gui, int iterations){
+    public void render(MandelbrotGUI gui){
         gui.disableInput();
 
 
@@ -47,8 +39,8 @@ public class Generator {
         int width = gui.getWidth();
 
         Complex[][] mesh = mesh(gui.getMinimumReal(), gui.getMaximumReal(),
-                gui.getMinimumImag(), gui.getMaximumImag(),
-                width,height);
+                                    gui.getMinimumImag(), gui.getMaximumImag(),
+                                    width,height);
 
         Color[][] picture = new Color[(int) (height / pixelSize)][(int) (width / pixelSize)];
 
@@ -57,29 +49,21 @@ public class Generator {
             for (int k = 0; k < picture[i].length; k++){
 
                 Complex cplx = mesh[(pixelSize/2 + i*pixelSize)][(pixelSize/2 + k*pixelSize)];
-                Complex temp = new Complex(0,0);
-                int h = 0;
-                while (h < iterations && temp.getAbs2() < 4){
-                    temp.mul(temp);
-                    temp.add(cplx);
 
-                    h++;
-                }
-                if (gui.getMode() == MandelbrotGUI.MODE_BW){
-                    if (h < iterations){
-                        picture[i][k] = Color.WHITE;
-                    }else {
-                        picture[i][k] = Color.BLACK;
-                    }
+
+                if(cplx.getAbs2() > 1){
+                    picture[i][k] = Color.WHITE;
                 }else {
-                    if (h < iterations){
-                        picture[i][k] = colors.get(h);
+                    if(cplx.getRe()>=0 && cplx.getIm()>=0){
+                        picture[i][k] = Color.RED;
+                    }else if(cplx.getRe()<0 && cplx.getIm()>=0){
+                        picture[i][k] = Color.BLUE;
+                    }else if(cplx.getRe()<0 && cplx.getIm() < 0){
+                        picture[i][k] = Color.YELLOW;
                     }else {
                         picture[i][k] = Color.BLACK;
                     }
                 }
-
-
 
 
             }
