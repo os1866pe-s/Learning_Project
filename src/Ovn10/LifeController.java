@@ -12,12 +12,14 @@ public class LifeController {
         while (true) {
 
             window.update();
-            if (window.getCommand() == 2){
+            int command = window.getCommand();
+
+            if (command == 2){
                 life.newGeneration();
-            }else if (window.getCommand() == 1){
+            }else if (command == 1){
 
                 life.flip(window.getRow(),window.getCol());
-            }else if (window.getCommand() == 3) {
+            }else if (command == 3) {
                 System.exit(0);
             }
         }
