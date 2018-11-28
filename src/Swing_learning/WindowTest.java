@@ -1,5 +1,6 @@
 package Swing_learning;
 
+import com.bulenkov.darcula.DarculaLaf;
 import jdk.nashorn.api.scripting.URLReader;
 
 import javax.imageio.ImageIO;
@@ -13,24 +14,22 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-import com.bulenkov.darcula.DarculaLaf;
-
 public class WindowTest extends JFrame {
 
     public static void main(String[] args) {
         new WindowTest();
     }
 
+    public JPanel thePanel;
 
-
-    public WindowTest(){
+    public WindowTest() {
         //Do shortcuts
         //Do screenshots
 
         this.setTitle("TestWindow");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400,400);
-
+        this.setLocationRelativeTo(null);
+        this.setSize(400, 400);
 
 
         try {
@@ -39,7 +38,7 @@ public class WindowTest extends JFrame {
             e.printStackTrace();
         }
 
-        JPanel thePanel = new JPanel();
+        thePanel = new JPanel();
 
         JButton btn_one = new JButton("Edit");
         JButton btn_two = new JButton("Save");
@@ -50,39 +49,26 @@ public class WindowTest extends JFrame {
         thePanel.add(lb);
 
 
-        this.add(thePanel);
 
 
 
         myKeyListener keyList = new myKeyListener();
 
+        this.setFocusable(true);
         this.addKeyListener(keyList);
+        this.add(thePanel);
         this.setResizable(false);
         this.setVisible(true);
 
+    }
+    public BufferedImage getImage(Component component){
+        BufferedImage bf = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
 
-
-
-
+        component.paint(bf.getGraphics());
+        return bf;
 
     }
-
-    public BufferedImage getScreenshot(){
-        int yOffset = 20;
-        try{
-            Robot rbt = new Robot();
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            Dimension dim = tk.getScreenSize();
-            BufferedImage background = rbt.createScreenCapture(new Rectangle(this.getX() + 2, this.getY() + 22, (int) (this.getWidth() - 4), (int) (this.getHeight() - 24)));
-            return background;
-
-        }catch (AWTException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-    public class myKeyListener implements KeyListener{
+    public class myKeyListener implements KeyListener {
 
         @Override
         public void keyTyped(KeyEvent e) {
@@ -91,33 +77,29 @@ public class WindowTest extends JFrame {
 
         @Override
         public void keyPressed(KeyEvent e) {
+            System.out.println("test");
+            if (e.isControlDown() && e.getKeyChar() == '3') {
 
-            if (e.isControlDown() && e.getKeyChar() == '3'){
-
-                try{
-                    ImageIO.write(getScreenshot(), "png", new File("src\\Swing_learning\\Screenshot.png"));
+                try {
+                    ImageIO.write(getImage(thePanel), "png", new File("src\\Swing_learning\\screen.png"));
 
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
 
-            if(e.isAltDown() && e.getKeyChar() == '2'){
+            if (e.isAltDown() && e.getKeyChar() == '2') {
                 URL url = null;
                 try {
                     url = new URL("https://projecteuler.net/project/resources/p022_names.txt");
 
-                BufferedReader br = new BufferedReader(new URLReader(url));
-                System.out.println(br.readLine());
-
+                    BufferedReader br = new BufferedReader(new URLReader(url));
+                    System.out.println(br.readLine());
 
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-
-
             }
-
         }
 
         @Override
