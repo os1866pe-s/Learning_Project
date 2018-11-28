@@ -16,13 +16,13 @@ public class Life {
         for (int r = 0; r < board.getRows();r++){
             for (int k = 0; k < board.getCols(); k++){
                 //fortlevande;
-                if (board.get(r,k) && getHeighbours(board,r,k) == 2 || getHeighbours(board,r,k) == 3){
+                if (board.get(r,k) && getNeighbours(board,r,k) == 2 || getNeighbours(board,r,k) == 3){
                     tempBoard[r][k] = true;
                 //dödsfall
-                }else if (board.get(r,k) && getHeighbours(board,r,k) >= 4){
+                }else if (board.get(r,k) && getNeighbours(board,r,k) >= 4){
                     tempBoard[r][k] = false;
                 //födelse
-                }else if(!board.get(r,k) && getHeighbours(board,r,k) == 3){
+                }else if(!board.get(r,k) && getNeighbours(board,r,k) == 3){
                     tempBoard[r][k] = true;
 
                 }else {
@@ -48,7 +48,7 @@ public class Life {
     }
 
     /**Returns the quantity of neighbours around index row, col*/
-    private int getHeighbours(LifeBoard board, int row, int col){
+    private int getNeighbours(LifeBoard board, int row, int col){
 
         int neighbours = 0;
 
