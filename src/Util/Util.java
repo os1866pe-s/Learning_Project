@@ -1,5 +1,9 @@
 package Util;
 
+import com.bulenkov.darcula.DarculaLaf;
+
+import javax.swing.*;
+
 public class Util {
 
 
@@ -25,7 +29,13 @@ public class Util {
         }
     }
 
-
+    public void setLookDracula(){
+        try {
+            UIManager.setLookAndFeel(new DarculaLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

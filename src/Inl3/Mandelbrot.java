@@ -1,15 +1,27 @@
 package Inl3;
 
 
+import com.bulenkov.darcula.DarculaLaf;
+
+import javax.swing.*;
+
 public class Mandelbrot {
 
     public static void main(String[] args) {
 
+        try {
+            UIManager.setLookAndFeel(new DarculaLaf());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+        int iterations = 255;
+
         MandelbrotGUI mb = new MandelbrotGUI();
         mb.enableInput();
+        //JulianSetGenerator gen = new JulianSetGenerator();
         Generator gen = new Generator();
+        //CircleGenerator gen = new CircleGenerator();
 
-        //CircleGenerator cGen = new CircleGenerator();
         boolean hasImage = false;
 
         while (true) {
@@ -29,7 +41,7 @@ public class Mandelbrot {
 
                         gen.render(mb,Integer.parseInt(mb.getExtraText()));
                     }else {
-                        gen.render(mb,200);
+                        gen.render(mb,iterations);
                     }
 
                     hasImage = true;
@@ -40,7 +52,7 @@ public class Mandelbrot {
 
                             gen.render(mb,Integer.parseInt(mb.getExtraText()));
                         }else {
-                            gen.render(mb,200);
+                            gen.render(mb,iterations);
                         }
                         System.out.println((!mb.getExtraText().equals("")) && (Integer.parseInt(mb.getExtraText()) <= 20000));
 

@@ -22,7 +22,24 @@ max 0.0025975691015438975
 Iterations: 2000
 Resolution: Very High
 
-pic3
+
+
+
+
+pic5
+Real axis:
+min -0.10933149633647296
+max -0.10933136208768198
+
+Imaginary axis:
+min 0.8949453682085305
+max 0.8949454822983679
+
+Iterations:
+Resolution:
+
+
+pic
 Real axis:
 min
 max

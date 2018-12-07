@@ -1,5 +1,6 @@
 package Swing_learning;
 
+import Util.Util;
 import com.bulenkov.darcula.DarculaLaf;
 import jdk.nashorn.api.scripting.URLReader;
 
@@ -32,11 +33,7 @@ public class WindowTest extends JFrame {
         this.setSize(400, 400);
 
 
-        try {
-            UIManager.setLookAndFeel(new DarculaLaf());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+        new Util().setLookDracula();
 
         thePanel = new JPanel();
 
@@ -55,6 +52,7 @@ public class WindowTest extends JFrame {
         myKeyListener keyList = new myKeyListener();
 
         this.setFocusable(true);
+        thePanel.addKeyListener(keyList);
         this.addKeyListener(keyList);
         this.add(thePanel);
         this.setResizable(false);
@@ -77,9 +75,9 @@ public class WindowTest extends JFrame {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("test");
-            if (e.isControlDown() && e.getKeyChar() == '3') {
 
+            if (e.isControlDown() && e.getKeyChar() == '3') {
+                System.out.println("test");
                 try {
                     ImageIO.write(getImage(thePanel), "png", new File("src\\Swing_learning\\screen.png"));
 

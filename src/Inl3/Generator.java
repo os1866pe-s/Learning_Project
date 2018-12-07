@@ -59,10 +59,11 @@ public class Generator {
                 Complex cplx = mesh[(pixelSize/2 + i*pixelSize)][(pixelSize/2 + k*pixelSize)];
                 Complex temp = new Complex(0,0);
                 int h = 0;
+                //Is the point going to infinity or to a constant number
                 while (h < iterations && temp.getAbs2() < 4){
                     temp.mul(temp);
                     temp.add(cplx);
-
+                    //temp.add(new Complex(-0.70176, -0.3842));
                     h++;
                 }
                 if (gui.getMode() == MandelbrotGUI.MODE_BW){
@@ -73,19 +74,19 @@ public class Generator {
                     }
                 }else {
                     if (h < iterations){
-                        picture[i][k] = colors.get(h);
+                        picture[i][k] = new Color(func(h, 1, 0),func(h, 2, 120),func(h, 1, 240));;
                     }else {
                         picture[i][k] = Color.BLACK;
                     }
                 }
-
-
-
-
             }
         }
         gui.putData(picture, pixelSize, pixelSize);
         gui.enableInput();
+    }
+
+    private int func(double x, double f, double p){
+        return (int) (255*Math.pow((Math.cos(Math.sqrt(x)*f + p)),2));
     }
 
     /**Creates a matrix which contains complex numbers

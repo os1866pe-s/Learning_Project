@@ -11,7 +11,7 @@ public class CircleGenerator {
     }
 
     /**Draws an image in the user-interface gui*/
-    public void render(MandelbrotGUI gui){
+    public void render(MandelbrotGUI gui, int iterations){
         gui.disableInput();
 
 
