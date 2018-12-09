@@ -36,14 +36,11 @@ public class Life {
                 board.put(r,k,tempBoard[r][k]);
             }
         }
-
-
     }
 
     /**Changes the content in index row, col from true to false
      * and the opposite*/
     public void flip(int row, int col){
-
         board.put(row, col, !board.get(row,col));
     }
 
