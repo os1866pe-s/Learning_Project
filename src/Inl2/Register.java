@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 public class Register {
 
-
     private ArrayList<CD> reg;
 
     public Register(){
@@ -19,8 +18,20 @@ public class Register {
 
     /**Adds a new CD with an artist and a title.*/
     public void addCD(String artist, String title){
-        reg.add(new CD(artist,title));
 
+        CD cd = new CD(artist,title);
+
+        int min = reg.size();
+        int index = 0;
+        for (CD t: reg) {
+            if (cd.getArtist().toLowerCase().compareTo(t.getArtist().toLowerCase()) < 0){
+                min = index;
+            }
+            index++;
+        }
+
+        System.out.println(min);
+        reg.add(min, cd);
     }
 
     /**Removes all CD's with the artist(artist).*/
@@ -84,14 +95,12 @@ public class Register {
     public String getSortedByTitle(){
         reg.sort(Comparator.comparing(CD::getTitle));
 
-
         StringBuilder tempLine = new StringBuilder();
         for (CD i : reg){
             tempLine.append(i.toString() + "\n");
         }
         return tempLine.toString();
     }
-
 
     /** Läser registret från filen med namn fileName. */
     public void readFromFile(String fileName) {
@@ -116,7 +125,6 @@ public class Register {
         for (int x = 1; x < CDs.length; x += 2){
                 addCD(CDs[x-1], CDs[x]);
         }
-
     }
 
     /** Sparar registret på fil med namnet fileName. */
@@ -134,7 +142,5 @@ public class Register {
         } catch (IOException e) {
             System.out.println("IO exception");
         }
-
-
     }
 }

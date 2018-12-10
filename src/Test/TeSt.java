@@ -7,35 +7,32 @@ public class TeSt {
 
     public static void main(String[] args) {
 
-        Image image = new Image(3,3);
-        image.setPixel(0,0, 5);
-        image.setPixel(1,0, 2);
-        image.setPixel(2,0, 0);
-        image.setPixel(0,1, 7);
-        image.setPixel(1,1, 2);
-        image.setPixel(2,1, 0);
-        image.setPixel(0,2, 9);
-        image.setPixel(1,2, 7);
-        image.setPixel(2,2, 3);
+        ApartmentRegister apr = new ApartmentRegister();
 
-        image.printPixels();
+        Apartment a = new Apartment(1, 20);
+        a.setSquareMetreRent(30);
+        apr.insert(a);
+        Apartment b = new Apartment(1, 30);
+        b.setSquareMetreRent(30);
 
-        System.out.println();
-        image.improve();
+        apr.insert(b);
 
-        image.printPixels();
+        System.out.println(a.lessExpensiveThan(b));
 
-        ArrayList<Integer> arrayList = new ArrayList<>();
+        System.out.println("\\n");
 
-        //1, 2, 3 Autoboxar dem till Integer objects
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
+        int[] row = new int[5];
+        row[0] = 5;
+        row[1] = 7;
+        row[2] = 3;
+        row[3] = 10;
+        row[4] = 2;
 
-        arrayList.remove(1);
+        Sorting.insertionSort(row, 5);
 
-
-        System.out.println(arrayList.get(1) + " " + arrayList.indexOf(3));
-
+        System.out.println(Arrays.toString(row));
     }
+
+
+
 }

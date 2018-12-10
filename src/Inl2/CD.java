@@ -2,8 +2,8 @@ package Inl2;
 
 public class CD {
 
-    private String artist;   // artist
-    private String title;    // titel
+    private String artist;
+    private String title;
 
     /**Creates a cd with and artist(artist) and a title(title).*/
     public CD(String artist, String title) {
@@ -24,6 +24,5 @@ public class CD {
     /**Returns a String which contains both the cd's artist and title.*/
     public String toString() {
         return artist + "   " + title;
-
     }
 }
