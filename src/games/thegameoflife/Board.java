@@ -45,6 +45,8 @@ public class Board {
 		gameBoard = board;
 	}
 
+
+	//TODO add so you can customize the spawnrate
 	public void fillRandom() {
 		for (int i = 0; i < col; i++){
 			for (int j = 0; j < row; j++){

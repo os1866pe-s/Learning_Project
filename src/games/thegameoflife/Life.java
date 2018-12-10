@@ -47,7 +47,7 @@ public class Life {
 
 	public void flipWithScreenCord(int x, int y, int resolution){
 		try {
-			board.setGameBoard( (int) Math.floor(x / (float) resolution), (int) Math.floor(y / (float) resolution), !board.get(x,y));
+			board.setGameBoard( (int) Math.floor(x / (float) resolution), (int) Math.floor(y / (float) resolution), !board.get((int) Math.floor(x / (float) resolution),(int) Math.floor(y / (float) resolution)));
 
 		}catch (ArrayIndexOutOfBoundsException e){
 			System.out.println("Try click on the screen, array is out of bounds");
