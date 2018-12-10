@@ -44,4 +44,12 @@ public class Board {
 	public void setNewBoard(boolean[][] board){
 		gameBoard = board;
 	}
+
+	public void fillRandom() {
+		for (int i = 0; i < col; i++){
+			for (int j = 0; j < row; j++){
+				gameBoard[i][j] = Math.round(Math.random()) == 0;
+			}
+		}
+	}
 }
