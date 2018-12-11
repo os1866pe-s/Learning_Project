@@ -22,9 +22,8 @@ public class ShapeList {
 
     /**Draws the shapes in the list*/
     public void draw(SimpleWindow w){
-
-        for (int i = 0; i < shapeList.size(); i++){
-            shapeList.get(i).draw(w);
+        for (Shape i: shapeList){
+            i.draw(w);
         }
     }
 

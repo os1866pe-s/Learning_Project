@@ -58,10 +58,7 @@ public class Mandelbrot {
 
                     }
                     break;
-
-
             }
-
         }
     }
 }

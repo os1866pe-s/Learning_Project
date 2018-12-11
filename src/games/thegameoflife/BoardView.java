@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 
 public class BoardView extends JFrame implements Runnable {
@@ -90,6 +89,8 @@ public class BoardView extends JFrame implements Runnable {
 		item12 = new JMenuItem("Step");
 		item12.addActionListener(lForbutton);
 		KeyStroke keyStroke3 = KeyStroke.getKeyStroke('S', InputEvent.ALT_MASK, false);
+		//This will make it so the lag dissapears
+		item12.registerKeyboardAction(lForbutton, keyStroke3, JComponent.WHEN_IN_FOCUSED_WINDOW);
 		item12.setAccelerator(keyStroke3);
 		menuStart.add(item12);
 
@@ -114,16 +115,16 @@ public class BoardView extends JFrame implements Runnable {
 
 		menuBar.add(menuEdit);
 
+        board = new Board(100, 60);
+        life = new Life(board);
 
-		panel = new JPanel();
-		panel.setPreferredSize(new Dimension(1001, 601));
+        panel = new JPanel();
+        panel.setPreferredSize(new Dimension(board.getCol() * resolution + 1, board.getRow() * resolution + 1));
 
-		board = new Board(100, 60);
-		life = new Life(board);
 
 		board.fillRandom();
 
-		this.setMinimumSize(new Dimension(1007, 653));
+		this.setMinimumSize(new Dimension(board.getCol() * resolution + 7, board.getRow() * resolution + 53));
 		this.add(panel);
 		this.add(new Draw());
 		this.setJMenuBar(menuBar);
@@ -141,7 +142,7 @@ public class BoardView extends JFrame implements Runnable {
 			//resolution = panel.getWidth() / board.getCol();
 			Graphics2D graph2 = (Graphics2D) g;
 			graph2.setColor(Color.DARK_GRAY);
-			graph2.fill(new Rectangle2D.Float(0, 0, 1007, 700));
+			graph2.fill(new Rectangle2D.Float(0, 0, board.getCol() * resolution + 7, board.getRow() * resolution +53));
 
 			graph2.setColor(new Color(0x595757));
 			for (int i = 0; i < board.getCol(); i++) {
@@ -176,11 +177,12 @@ public class BoardView extends JFrame implements Runnable {
 			}
 
 			//Step alt+S
-			if (e.getSource() == item12) {
-				life.increaseGeneration();
-				frame.repaint();
+			if (e.getSource() == item12 && !loop) {
+                System.out.println(loop);
+			    life.increaseGeneration();
+                frame.repaint();
 
-			}
+            }
 			//Generate new random map ctrl+R
 			if (e.getSource() == item13) {
 				board.fillRandom();
@@ -190,7 +192,6 @@ public class BoardView extends JFrame implements Runnable {
 			//Edit the current gameBoard with mouseClicks ctrl+E
 			if (e.getSource() == item21){
 				editBoard = !editBoard;
-				System.out.println(editBoard);
 			}
 		}
 	}

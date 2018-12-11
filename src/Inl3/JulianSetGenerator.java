@@ -9,9 +9,9 @@ public class JulianSetGenerator {
 	private int pixelSize;
 
 	private ArrayList<Color> colors;
-	//private Complex modifier = new Complex(-0.8, 0.156);
+	private Complex modifier = new Complex(-0.8, 0.156);
 	//private Complex modifier = new Complex(-0.624 , 0.435);
-	private Complex modifier = new Complex(0.626,0);
+	//private Complex modifier = new Complex(-0.4, -0.4);
 	//private Complex modifier = new Complex(-0.8, 0.156);
 
 
@@ -76,7 +76,7 @@ public class JulianSetGenerator {
 				//Complex temp = new Complex(0,0);
 				int h = 0;
 				//Is the point going to infinity or to a constant number
-				while (h < iterations && cplx.getAbs2() < 4) {
+				while (h < iterations && cplx.getAbs2() < 2) {
 					cplx.mul(cplx);
 					cplx.add(modifier);
 					h++;

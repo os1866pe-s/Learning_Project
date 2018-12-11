@@ -13,17 +13,16 @@ public class ShapeListTest {
         ShapeList shapes = load.loadShapes();
         shapes.draw(w);
 
+        Shape tempShape;
         while (true){
             w.waitForMouseClick();
-            int firstX = w.getMouseX();
-            int firstY = w.getMouseY();
 
-            if (shapes.findHit(firstX,firstY) != null){
+            if ((tempShape = shapes.findHit(w.getMouseX(),w.getMouseY())) != null){
                 w.waitForMouseClick();
-                shapes.findHit(firstX,firstY).moveToAndDraw(w, w.getMouseX(),w.getMouseY());
+                tempShape.moveToAndDraw(w, w.getMouseX(),w.getMouseY());
                 shapes.draw(w);
+                write.writeShape(shapes);
             }
-            write.writeShape(shapes);
         }
     }
 }
