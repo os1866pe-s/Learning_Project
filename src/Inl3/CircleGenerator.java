@@ -48,8 +48,7 @@ public class CircleGenerator {
         for (int i = 0; i < picture.length; i++){
             for (int k = 0; k < picture[i].length; k++){
 
-                Complex cplx = mesh[(pixelSize/2 + i*pixelSize)][(pixelSize/2 + k*pixelSize)];
-
+                Complex cplx = mesh[(i*pixelSize)][(k*pixelSize)];
 
                 if(cplx.getAbs2() > 1){
                     picture[i][k] = Color.WHITE;

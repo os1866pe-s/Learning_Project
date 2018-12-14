@@ -1,5 +1,7 @@
 package Inl3;
 
+import javafx.scene.shape.Circle;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -21,7 +23,6 @@ public class Generator {
     /**Draws an image in the user-interface gui*/
     public void render(MandelbrotGUI gui, int iterations){
         gui.disableInput();
-
 
         switch (gui.getResolution()){
             case MandelbrotGUI.RESOLUTION_VERY_LOW:

@@ -20,6 +20,7 @@ public class BoardView extends JFrame implements Runnable {
 
 	private Graphics g;
 
+	private int sideWindow = 250;
 	private int resolution = 10;
 	private boolean running = false;
 	private boolean loop = false;
@@ -115,20 +116,21 @@ public class BoardView extends JFrame implements Runnable {
 
 		menuBar.add(menuEdit);
 
-        board = new Board(100, 60);
+        board = new Board(70, 60);
         life = new Life(board);
 
-        panel = new JPanel();
-        panel.setPreferredSize(new Dimension(board.getCol() * resolution + 1, board.getRow() * resolution + 1));
-
+		panel = new JPanel();
+		panel.setPreferredSize(new Dimension(board.getCol() * resolution + 1, board.getRow() * resolution + 1));
 
 		board.fillRandom();
 
-		this.setMinimumSize(new Dimension(board.getCol() * resolution + 7, board.getRow() * resolution + 53));
+		this.setMinimumSize(new Dimension(board.getCol() * resolution + 7 + sideWindow, board.getRow() * resolution + 53));
+
+
 		this.add(panel);
-		this.add(new Draw());
 		this.setJMenuBar(menuBar);
 
+		this.add(new Draw());
 		this.pack();
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
@@ -139,7 +141,6 @@ public class BoardView extends JFrame implements Runnable {
 
 	private class Draw extends JComponent {
 		public void paint(Graphics g) {
-			//resolution = panel.getWidth() / board.getCol();
 			Graphics2D graph2 = (Graphics2D) g;
 			graph2.setColor(Color.DARK_GRAY);
 			graph2.fill(new Rectangle2D.Float(0, 0, board.getCol() * resolution + 7, board.getRow() * resolution +53));
