@@ -1,10 +1,6 @@
-package Test;
-import sun.util.resources.CalendarData;
+package appIdeas;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
@@ -16,25 +12,29 @@ public class Time extends JFrame {
 
         Calendar d = Calendar.getInstance(TimeZone.getDefault());
 
-        System.out.println("Day : " + LocalDate.now().getDayOfMonth() + " " + LocalDate.now().getDayOfWeek());
+
+        System.out.println("Day : " + LocalDate.now().getDayOfMonth());
+        System.out.println("Week: " + d.get(Calendar.WEEK_OF_YEAR));
         System.out.println("Month : " + LocalDate.now().getMonthValue());
         System.out.println("Year : " + LocalDate.now().getYear());
         System.out.println("Time : " + ZonedDateTime.now().getHour() + ":" + ZonedDateTime.now().getMinute() + ":" + ZonedDateTime.now().getSecond());
 
-        Calendar c = Calendar.getInstance();
-        System.out.println(c.getTimeZone());
 
-        //new Time();
+        new Time();
 
 
     }
 
     public Time(){
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Calendar d = Calendar.getInstance(TimeZone.getDefault());
 
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(150, 150);
+        this.setResizable(true);
+        this.setLocationRelativeTo(null);
         JPanel p = new JPanel();
 
-        p.add(new JLabel(String.valueOf(ZonedDateTime.now().getSecond())));
+        p.add(new JLabel(Integer.toString(d.get(Calendar.WEEK_OF_YEAR))));
 
         this.add(p);
         this.setVisible(true);
