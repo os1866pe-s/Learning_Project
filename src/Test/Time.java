@@ -16,13 +16,15 @@ public class Time extends JFrame {
 
         Calendar d = Calendar.getInstance(TimeZone.getDefault());
 
-        System.out.println("Day : " + LocalDate.now().getDayOfMonth());
+        System.out.println("Day : " + LocalDate.now().getDayOfMonth() + " " + LocalDate.now().getDayOfWeek());
         System.out.println("Month : " + LocalDate.now().getMonthValue());
         System.out.println("Year : " + LocalDate.now().getYear());
         System.out.println("Time : " + ZonedDateTime.now().getHour() + ":" + ZonedDateTime.now().getMinute() + ":" + ZonedDateTime.now().getSecond());
 
+        Calendar c = Calendar.getInstance();
+        System.out.println(c.getTimeZone());
 
-        new Time();
+        //new Time();
 
 
     }
