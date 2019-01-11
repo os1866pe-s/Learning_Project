@@ -1,2 +1,11 @@
 stopwatch
 converter
+
+stockwatcher with information which I want to see
+    Design the fragement with all the information for each stock
+    Store all the information in a database
+    Be able to add all different stocks
+
+SudokuSolver
+
+

@@ -59,9 +59,9 @@ public class DrawFunctions extends Application {
 			g.strokeLine(oldX, oldY, newX, newY);
 		}
 		//g.strokeOval(newX, newY, 1, 1);
+		g.fillRect(10, 100, 100, 100);
 
-
-		g.setStroke(new Color(abs((newX -400) * 0.01) % 1,abs((newY- 300) * 0.01) % 1,abs(t * 0.25) % 1,1));
+		//g.setStroke(new Color(abs((newX -400) * 0.01) % 1,abs((newY- 300) * 0.01) % 1,abs(t * 0.25) % 1,1));
 		oldX = newX;
 		oldY = newY;
 	}
@@ -71,7 +71,7 @@ public class DrawFunctions extends Application {
 		//double y = cos(t) * (pow(E, cos(t)) - 2* cos(4*t) - pow(sin(t/12.0), 5));
 
 		double x =t;
-		double y = x * pow(E, -x);
+		double y = x;
 		return new Point2D(x, -y).multiply(50);
 	}
 

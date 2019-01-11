@@ -1,70 +1,48 @@
 package Test;
 
-import java.util.Arrays;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.application.Application;
+import javafx.application.HostServices;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 
 public class TeSt {
 
     public static void main(String[] args) {
+        int G = 'G';
+        int O = 'O';
+        int M = 'M';
+        int X = 'X';
 
-        ApartmentRegister apr = new ApartmentRegister();
-
-        Apartment a = new Apartment(1, 20);
-        a.setSquareMetreRent(30);
-        apr.insert(a);
-        Apartment b = new Apartment(1, 30);
-        b.setSquareMetreRent(30);
-
-        apr.insert(b);
-
-        System.out.println(a.lessExpensiveThan(b));
-
-        System.out.println("\\n");
-
-        int[] row = new int[5];
-        row[0] = 5;
-        row[1] = 7;
-        row[2] = 3;
-        row[3] = 10;
-        row[4] = 2;
-
-        Sorting.insertionSort(row, 5);
-
-        System.out.println(Arrays.toString(row));
+        List<Character> c = new ArrayList<>();
+        c.add('I');
+        c.add('N');
+        c.add('V');
+        c.add('E');
+        c.add('B');
 
 
-
-        Item[] items = new Item[10];
-
-
-        items[0] = new Item("DAA");
-        items[1] = new Item("BAA");
-        items[2] = new Item("CAA");
-        items[3] = new Item("ABA");
-        items[4] = new Item("AAA");
-        items[5] = new Item("EAAA");
-        items[6] = new Item("CBAA");
-        items[7] = new Item("AYAA");
-		items[8] = new Item("JDAA");
-		items[9] = new Item("ADAA");
-
-        for (Item i : items){
-            System.out.println(i.getName());
+        int sum = 0;
+        for (Character g : c) {
+            sum += g;
         }
+        System.out.println(sum);
 
-        Item.sortByNames(items, 10);
-        System.out.println("----------");
-        for (Item i : items){
-            System.out.println(i.getName());
-        }
+        System.out.println("Sum: " + (int)'S' + (int)'D' + (int)'B' + (int)'V' + (int)'A');
+        System.out.println("Mult: " + (G * O * M * X));
 
+        System.out.println((int)'I' + (int)'N' +(int) 'V' + (int)'E' + (int) 'A');
+        System.out.println((int)'I' + (int)'N' +(int) 'V' + (int)'E' + (int) 'B');
 
-
-        StringBuilder g = new StringBuilder();
-        g.append("t\nt" + " h");
-		System.out.println(g.toString());
+        System.out.println((int) 'K' + " " + (int) 'E');
     }
-
-
-
 }

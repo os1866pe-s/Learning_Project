@@ -1,6 +1,6 @@
 package Test;
 
-import Ovn7.Turtle;
+import school.EDDA10.Ovn7.Turtle;
 import se.lth.cs.window.SimpleWindow;
 
 import java.awt.*;

@@ -5,7 +5,7 @@ public class P7 {
 
         System.out.println(primeGen(10001));
     }
-    //Generate primeNumbers and based on what index of prime number you want
+    //Generate primeNumbers and based on what biggestIndex of prime number you want
     public static int primeGen(int index) {
         int range = 0;
         int nPrime = 0;

@@ -1,10 +1,7 @@
 package Test;
 
-import Ovn7.Turtle;
+import school.EDDA10.Ovn7.Turtle;
 import se.lth.cs.window.SimpleWindow;
-
-import java.awt.*;
-import java.awt.color.*;
 
 public class SimpWindMethods {
 

@@ -11,6 +11,7 @@ public class Two extends Application {
 	private Stage window;
 	private Button button;
 
+	//nr6
 	@Override
 	public void start(Stage window) throws Exception {
 		window.setTitle("Two");
@@ -24,4 +25,6 @@ public class Two extends Application {
 		window.setScene(scene);
 		window.show();
 	}
+
+
 }
