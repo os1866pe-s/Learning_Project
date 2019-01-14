@@ -40,9 +40,9 @@ public class SudokuView extends Application {
 
 	private Pane root;
 
-	private static SudokuSolver sudokuSolver = new SudokuSolver(SudokuSolver.NINE);
+	private static SudokuSolver sudokuSolver = new SudokuSolver(SudokuSolver.SIXTEN);
 
-	private static final int WIDTH = 450, HEIGHT = WIDTH + 75;
+	private static final int WIDTH = 600, HEIGHT = WIDTH + 75;
 	private final int tilewidth = WIDTH / SudokuSolver.size;
 	private final String numberDarkBackgroundColor = "74B8D6";
 	private final String numberWhiteBackgroundColor = "BFE7F3";
