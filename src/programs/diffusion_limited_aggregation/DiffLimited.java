@@ -17,7 +17,7 @@ public class DiffLimited extends DrawProgram {
 
 	@Override
 	public void setup(GraphicsContext g) {
-		setSize(1200, 800);
+		setSize(1200, 300);
 		this.width = super.width;
 		this.height = super.height;
 		//setTranslate(width / 2, height / 2);
@@ -60,12 +60,10 @@ public class DiffLimited extends DrawProgram {
 					stuckWalkers.add(walkers.get(j));
 					walkers.remove(walkers.get(j));
 					walkers.trimToSize();
-					if (stuckWalkers.size() < 2000)
+					if (stuckWalkers.size() < 1000)
 						walkers.add(new Walker());
 				}
 			}
 		}
-
-
 	}
 }
