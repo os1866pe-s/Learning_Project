@@ -8,42 +8,47 @@ import java.util.stream.IntStream;
  */
 public class SudokuHelper {
 
-	private String defaultSudoku;
+	private Sudoku defaultSudoku;
+	private SudokuGenerator generator;
 
-	public SudokuHelper() {
+	private static SudokuHelper sudokuHelper;
+
+
+	private SudokuHelper() {
+		generator = new SudokuGenerator();
+	}
+
+	public static SudokuHelper getInstance(){
+		if (sudokuHelper == null) {
+			sudokuHelper = new SudokuHelper();
+		}
+		return sudokuHelper;
 	}
 
 	public Sudoku getRandomSudoku(){
-		Sudoku sudoku = new Sudoku();
-
-		int k = 0;
-
-		int numberModifier = (int) (Math.random() * 9 + 1);
-		for (int i = 1; i <= 9; i++){
-			k = ((i - 1) % 3 == 0) ? k + 1 : k;
-
-			for (int j = 1; j <= 9; j++){
-				sudoku.setNumber(i, j, (3 * i + j + k + numberModifier) % 9 + 1);
-			}
-		}
-		scrambleSudoku(sudoku);
+		Sudoku sudoku = generator.generatedSudoku();
 
 		return sudoku;
 	}
 
 	public Sudoku getDefaultSudoku(){
 		//TODO optimise so it only has to generate it once
-		Sudoku sudoku = new Sudoku();
 
-		int k = 0;
-		for (int i = 1; i <= 9; i++){
-			k = ((i - 1) % 3 == 0) ? k + 1 : k;
+		if (defaultSudoku == null){
+			Sudoku sudoku = new Sudoku();
 
-			for (int j = 1; j <= 9; j++){
-				sudoku.setNumber(i, j, (3 * i + j + k) % 9 + 1);
+			int k = 0;
+			for (int i = 1; i <= 9; i++){
+				k = ((i - 1) % 3 == 0) ? k + 1 : k;
+
+				for (int j = 1; j <= 9; j++){
+					sudoku.setNumber(i, j, (3 * i + j + k) % 9 + 1);
+				}
 			}
+
+			defaultSudoku = sudoku;
 		}
-		return sudoku;
+		return defaultSudoku.clone();
 	}
 
 	public boolean validSudoku(Sudoku sudoku){
@@ -67,24 +72,29 @@ public class SudokuHelper {
 
 	public void scrambleSudoku(Sudoku sudoku){
 
-		IntStream.range(0, 100).forEach(i -> {
+		IntStream.range(0, 500).forEach(i -> {
 
-			int rand = (int) (Math.random() * 9 + 1);
-			switchSudokuRow(sudoku, rand, (rand % 3 == 0) ? rand - 1 : rand + 1);
-
-			rand = (int) (Math.random() * 3 + 1);
-			switchBigSudokuColumn(sudoku, rand, (rand == 3) ? rand - 1 : rand + 1);
+			int rand;
 
 
-			rand = (int) (Math.random() * 9 + 1);
-			switchSudokuColumn(sudoku, rand, (rand % 3 == 0) ? rand - 1 : rand + 1);
-
-			rand = (int) (Math.random() * 3 + 1);
-			switchBigSudokuRow(sudoku, rand, (rand == 3) ? rand - 1 : rand + 1);
-
-
-
-
+			switch ((int) (Math.random() * 4 + 1)){
+				case 1 :
+					rand = (int) (Math.random() * 9 + 1);
+					switchSudokuRow(sudoku, rand, (rand % 3 == 0) ? rand - 1 : rand + 1);
+					break;
+				case 2 :
+					rand = (int) (Math.random() * 3 + 1);
+					switchBigSudokuColumn(sudoku, rand, (rand == 3) ? rand - 1 : rand + 1);
+					break;
+				case 3 :
+					rand = (int) (Math.random() * 9 + 1);
+					switchSudokuColumn(sudoku, rand, (rand % 3 == 0) ? rand - 1 : rand + 1);
+					break;
+				case 4 :
+					rand = (int) (Math.random() * 3 + 1);
+					switchBigSudokuRow(sudoku, rand, (rand == 3) ? rand - 1 : rand + 1);
+					break;
+			}
 		});
 
 	}

@@ -1,6 +1,8 @@
 package appIdeas.sudoku;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Oscar on 2019-03-19.
@@ -9,34 +11,32 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SudokuHelper helper = new SudokuHelper();
+		SudokuHelper helper = SudokuHelper.getInstance();
 
-		Sudoku sudoku = helper.getDefaultSudoku();
+		List<Sudoku> sudokus = new ArrayList<>();
 
+		int different = 0;
+		int total = 5000;
+		boolean t = true;
+		for (int i = 0; i < total; i++){
 
-		System.out.println(sudoku.toString());
-		System.out.println(helper.validSudoku(sudoku));
+			Sudoku temp = helper.getRandomSudoku();
 
-		helper.scrambleSudoku(sudoku);
-		System.out.println(sudoku.toString());
-
-		double k = 0;
-		double same = 0;
-		for (int i = 0; i < 10000; i++){
-			Sudoku sudoku1 = helper.getRandomSudoku();
-
-
-			helper.scrambleSudoku(sudoku1);
-			int u = helper.matchingNumbers(sudoku1, helper.getDefaultSudoku());
-			if (u == 81){
-				same++;
+			for (Sudoku sudoku1 : sudokus){
+				if ((helper.matchingNumbers(sudoku1, temp) == 81)){
+					t = false;
+					break;
+				}
 			}
-			k += u;
-			//System.out.println(u);
-			//System.out.println(sudoku1.toString());
-		}
-		System.out.println(k / (10000 * 81) + " " + same);
+			System.out.println(t);
 
-		//28000 sudoku's until you will solver the same
+			if (t){
+				different++;
+			}
+			t = true;
+			sudokus.add(temp);
+		}
+
+		System.out.println(different + " " + total + " " + (total - different));
 	}
 }

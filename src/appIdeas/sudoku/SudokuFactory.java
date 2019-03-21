@@ -9,10 +9,8 @@ public class SudokuFactory {
 		Easy, Medium, Hard
 	}
 
-
+	//TODO
 	public static Sudoku getGeneratedSudoku(Difficulty difficulty){
-
-		//TODO
 
 		switch (difficulty){
 			case Easy:
@@ -30,8 +28,10 @@ public class SudokuFactory {
 	}
 
 	//TODO Get pdf with sudokus
-	public void generatePDF(Difficulty... difficulty){
-
+	public void generatePDF(Difficulty... difficulties){
+		for (Difficulty dif : difficulties){
+			Sudoku sudoku = getGeneratedSudoku(dif);
+		}
 	}
 
 

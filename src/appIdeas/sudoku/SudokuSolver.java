@@ -1,18 +1,24 @@
 package appIdeas.sudoku;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Oscar on 2019-03-19.
+ * Created by Oscar on 2019-03-19.<br>
  */
 public class SudokuSolver {
 
-	public SudokuSolver() {
+	private static SudokuSolver solver;
 
+	private SudokuSolver(){}
+
+	public static SudokuSolver getInstance(){
+		if (solver == null){
+			solver = new SudokuSolver();
+		}
+		return solver;
 	}
 
-	public int[][] solve(Sudoku sudoku){
+	public Sudoku solve(Sudoku sudoku){
 		//TODO
 		return null;
 	}
