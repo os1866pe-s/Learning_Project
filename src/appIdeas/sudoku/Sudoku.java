@@ -1,5 +1,8 @@
 package appIdeas.sudoku;
 
+import com.itextpdf.text.pdf.languages.ArabicLigaturizer;
+
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
@@ -33,6 +36,21 @@ public class Sudoku {
 	public Sudoku(int[] sudoku){
 		board = new int[9][9];
 		IntStream.range(0, 81).forEach(i -> board[i % 9][i / 9] = sudoku[i]);
+	}
+	//TODO
+	public int[] getAllNumbers(){
+		return Arrays.stream(board).flatMapToInt(Arrays::stream).toArray();
+	}
+
+	public int[][] getBoard(){
+		return board;
+	}
+
+	/**
+	 * Sets every cell of the sudoku to the number zero.
+	 * */
+	public void clear(){
+		IntStream.range(0, 81).forEach(i -> board[i % 9][i / 9] = 0);
 	}
 
 	/** Set a number at x, y in the sudokuboard.

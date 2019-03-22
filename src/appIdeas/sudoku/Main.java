@@ -11,8 +11,9 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		SudokuHelper helper = SudokuHelper.getInstance();
+		System.out.println(SudokuHelper.getDefaultSudoku().toString());
 
+		/*
 		List<Sudoku> sudokus = new ArrayList<>();
 
 		int different = 0;
@@ -38,5 +39,9 @@ public class Main {
 		}
 
 		System.out.println(different + " " + total + " " + (total - different));
+		*/
+
+
+
 	}
 }
