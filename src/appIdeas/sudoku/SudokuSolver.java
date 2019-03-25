@@ -1,9 +1,6 @@
 package appIdeas.sudoku;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Oscar on 2019-03-19.<br>
@@ -37,7 +34,7 @@ public class SudokuSolver {
 	 * @param sudoku the sudoku to be solved. This must be a valid sudoku.
 	 * */
 	public static void solveSudoku(Sudoku sudoku){
-		if (!SudokuHelper.validSudoku(sudoku)){
+		if (!sudoku.validSudoku()){
 			return;
 		}
 

@@ -13,23 +13,26 @@ public class Main {
 
 		System.out.println(SudokuHelper.getDefaultSudoku().toString());
 
-		/*
-		List<Sudoku> sudokus = new ArrayList<>();
+		Sudoku sudoku = SudokuHelper.getDefaultSudoku();
 
+
+
+		List<Sudoku> sudokus = new ArrayList<>();
 		int different = 0;
-		int total = 5000;
+		int total = 20000;
 		boolean t = true;
 		for (int i = 0; i < total; i++){
 
-			Sudoku temp = helper.getRandomSudoku();
+			Sudoku temp = SudokuHelper.getDefaultSudoku();
+			SudokuHelper.scrambleSudoku(temp);
 
 			for (Sudoku sudoku1 : sudokus){
-				if ((helper.matchingNumbers(sudoku1, temp) == 81)){
+				if ((temp.matchingNumbers(sudoku1) == 81)){
 					t = false;
 					break;
 				}
 			}
-			System.out.println(t);
+			//System.out.println(t);
 
 			if (t){
 				different++;
@@ -39,9 +42,6 @@ public class Main {
 		}
 
 		System.out.println(different + " " + total + " " + (total - different));
-		*/
-
-
 
 	}
 }
