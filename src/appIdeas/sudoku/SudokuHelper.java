@@ -55,7 +55,7 @@ public class SudokuHelper {
 	 * */
 	public static void scrambleSudoku(Sudoku sudoku){
 
-		IntStream.range(0, 500).forEach(i -> {
+		IntStream.range(0, 10).forEach(i -> {
 			int rand;
 
 			switch ((int) (Math.random() * 4 + 1)){
@@ -77,7 +77,8 @@ public class SudokuHelper {
 					rand = (int) (Math.random() * 3 + 1);
 					sudoku.switchBigRows(rand, (rand == 3) ? rand - 1 : rand + 1);
 					break;
-			}});
+			}}
+		);
 	}
 
 }
