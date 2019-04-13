@@ -1,5 +1,7 @@
 package appIdeas.sudoku;
 
+import com.sun.istack.internal.Nullable;
+
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.stream.IntStream;
@@ -23,6 +25,15 @@ public class Sudoku {
 	 */
 	public Sudoku() {
 		board = new int[9][9];
+	}
+
+	/**
+	 * Creates a sudoku from a string.
+	 */
+	public Sudoku(String numbers) {
+		validateValue(81, numbers.length());
+		board = new int[9][9];
+		IntStream.range(0, 81).forEach(i -> board[i % 9][i / 9] = Character.getNumericValue(numbers.charAt(i)));
 	}
 
 	/**
@@ -100,8 +111,16 @@ public class Sudoku {
 		return null;
 	}
 
-	/***/
-	//TODO
+	/**
+	 * Goes through the sudoku from the given start position. If a cell is found with no number,
+	 * then a cell with the coordinates will be returned.
+	 *
+	 * @param x start-coordinate.
+	 * @param y start-coordinate.
+	 *
+	 * @return a cell with the coordinates if sudoku has a empty spot after x, y.
+	 * */
+	@Nullable
 	public Cell getNextEmptyCell(int x, int y) {
 		for (int j = y; j <= 9; j++) {
 			for (int i = 1; i <= 9; i++) {
@@ -152,6 +171,17 @@ public class Sudoku {
 	public int getNumber(int x, int y) {
 		validateValues(1, 9, x, y);
 		return board[x - 1][y - 1];
+	}
+
+	/**
+	 * Sets the number at the given position to 0
+	 *
+	 * @param x coordinate(1-9)
+	 * @param y coordinate(1-9)
+	 * */
+	public void clearCell(int x, int y){
+		validateValues(1,9,x,y);
+		setNumber(x,y, 0);
 	}
 
 	/**
@@ -241,7 +271,13 @@ public class Sudoku {
 		return box;
 	}
 
-	//TODO
+	/**
+	 * Finds the numbers that could be positioned at x, y.
+	 *
+	 * @param x coordinate of sudoku
+	 * @param y coordinate of sudoku
+	 * @return a list of all numbers that could be placed at x, y
+	 * */
 	public int[] getPossibleNumbers(int x, int y) {
 		int[] row = getRow(y);
 		row[x - 1] = 0;
@@ -263,6 +299,19 @@ public class Sudoku {
 			possible[box[i]] = 0;
 		});
 		return Arrays.stream(possible).filter(i -> i != 0).toArray();
+	}
+
+	/**
+	 * @return the amount of number in the sudoku.
+	 * */
+	public int getNumberQuantity() {
+		int count = 0;
+		for (int i = 0; i < 81; i++) {
+			if (board[i % 9][i / 9] != 0) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -362,7 +411,7 @@ public class Sudoku {
 	@Override
 	public Sudoku clone() {
 		Sudoku sudoku = new Sudoku();
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++) {
 			sudoku.board[i] = this.board[i].clone();
 		}
 		return sudoku;
@@ -439,5 +488,28 @@ public class Sudoku {
 		}
 	}
 
+	/**
+	 * Validates values. If they don't match expected then IllegalArgument is thrown.
+	 *
+	 * @param expected the expected value of all the values.
+	 * @param value   the values to be checked.
+	 */
+	private void validateValue(int expected, int value) {
+		if (value != expected) {
+			throw new IllegalArgumentException(MessageFormat.format(
+					"Incorrect value: Expected {0} but got {1}", expected, value
+			));
+		}
+	}
 
+	public String toLineString() {
+		StringBuilder builder = new StringBuilder();
+
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				builder.append(board[j][i]);
+			}
+		}
+		return builder.toString();
+	}
 }

@@ -1,6 +1,8 @@
 package appIdeas.sudoku;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Oscar on 2019-03-19.
@@ -9,10 +11,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Sudoku s = new Sudoku();
-		Sudoku t = new Sudoku();
-		//SudokuGenerator.setRandomStartingValues(s);
-		System.out.println(s.toString()  + "Start:" + s.isValid());
+
+		//System.out.println(s.toString()  + "Start:" + s.isValid());
 
 
 //		long startTime = System.currentTimeMillis();
@@ -25,30 +25,48 @@ public class Main {
 		//1058,1057,1013,1036,1033, 1030
 		//285
 
-		Sudoku gs = SudokuGenerator.generatedSudoku();
-		System.out.println(gs.toString() + "Finished:"+SudokuSolver.getSolutionCount(gs));
 
-
-//		long startTime = System.nanoTime();
+//		List<Sudoku> sudokus = new ArrayList<>();
 //
-//		int b = SudokuSolver.getSolutionCount(s);
-//		long stopTime = System.nanoTime();
-//		System.out.println(b + " Time:" + (stopTime - startTime) / 1000000d );
+//		long startTime = System.currentTimeMillis();
 //
-
-
-
+//		//int b = SudokuSolver.getSolutionCount(s);
+//		for (int i = 0; i < 1000; i++){
+//			Sudoku gs = SudokuGenerator.generatedSudoku();
+//			sudokus.add(gs);
+//		}
+//
+//		long stopTime = System.currentTimeMillis();
+//		System.out.println("Finished: " + (stopTime - startTime));
+//
 		//18
-/*
 
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 1000; i++){
+			Sudoku s = new Sudoku();
+			SudokuGenerator.setRandomStartingValues(s, 7);
+			System.out.println("Start:\n" + s.toString() + s.toLineString());
+			List<Sudoku> list = SudokuSolver.getAllSolutions(s);
+
+			for (Sudoku g : list){
+				//System.out.println(g.toString());
+			}
+			System.out.println(list.size() + " : " + i);
+
+		}
+		long stopTime = System.currentTimeMillis();
+		System.out.println("Finished: " + (stopTime - startTime));
+
+
+		/*long startTime = System.currentTimeMillis();
 		List<Sudoku> sudokus = new ArrayList<>();
 		int different = 0;
-		int total = 14000;
+		int total = 10000;
 		boolean t = true;
 		for (int i = 0; i < total; i++){
 
-			Sudoku temp = SudokuHelper.getDefaultSudoku();
-			SudokuHelper.scrambleSudoku(temp);
+			Sudoku temp = SudokuGenerator.generatedSudoku();
+			//SudokuHelper.scrambleSudoku(temp);
 
 			for (Sudoku sudoku1 : sudokus){
 				int s = temp.matchingNumbers(sudoku1);
@@ -59,6 +77,10 @@ public class Main {
 				}
 			}
 			//System.out.println(t);
+			System.out.println(i + ":" + temp.getNumberQuantity());
+//			if (temp.getNumberQuantity() >= 60){
+//				System.out.println(temp.toString());
+//			}
 
 			if (t){
 				different++;
@@ -66,11 +88,11 @@ public class Main {
 			t = true;
 			sudokus.add(temp);
 		}
-
+		long stopTime = System.currentTimeMillis();
+		System.out.println("Finished: " + (stopTime - startTime));
 		System.out.println(different + " " + total + " " + (total - different));
 */
 
-
-
+		//12ms/sudoku (10000 gen)
 	}
 }
